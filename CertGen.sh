@@ -19,7 +19,7 @@ ORGNAME="Company, Inc."
 ORGUNIT="Software Devlopment" 
 COMMONNAME="Company"    
 EMAIL="Company@domain.com"
-#CHALLANGE=""                # challenge password
+CHALLANGE="somepassword"
 COMPANY="Company"                  
 #----------------------------------------------------------------------
 #------------------------Days------------------------------------------
@@ -32,7 +32,7 @@ umask 277
 openssl genrsa -out $KEY 2048
 
 #2 Gen Csr
-cat <<__EOF__ | openssl req -new -key $KEY -out $CSR -passin file:ChallangePass.txt
+cat <<__EOF__ | openssl req -new -key $KEY -out $CSR
 ${COUNTRY}
 ${STATE}
 ${LOCALITY}
@@ -40,6 +40,7 @@ ${ORGNAME}
 ${ORGUNIT}
 ${COMMONNAME}
 ${EMAIL}
+${CHALLANGE}
 ${COMPANY}
 __EOF__
 
